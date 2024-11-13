@@ -1,0 +1,7 @@
+services:
+  main-initialize:
+    image: alpine:latest
+    environment:
+      - env1=${env1}
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["echo ${env1}"]
