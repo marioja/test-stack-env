@@ -3,5 +3,7 @@ services:
     image: alpine:latest
     env_file:
       - stack.env
+    environment:
+      - env1=${env1}
     entrypoint: ["/bin/sh", "-c"]
     command: ["echo env1=${env1}"]
