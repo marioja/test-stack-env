@@ -6,8 +6,8 @@ services:
     environment:
       ENVSE1:
       ENVSE2:
-      ENVPE1: "${ENVPE1}"
-      ENVPE2:
+      ENVPE1: 
+      ENVPE2: "${ENVPE2}"
       ENVPE3:
       ENVDC1: "OU=Users,OU=bimbo"
     entrypoint: ["/bin/sh", "-xvc"]
