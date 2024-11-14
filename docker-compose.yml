@@ -7,6 +7,6 @@ services:
     env_file:
       - stack.env
     environment:
-      <<: *ldap-env
+      <<: *my-env
     entrypoint: ["/bin/sh", "-c"]
     command: ["echo env1=${env1};printenv"]
