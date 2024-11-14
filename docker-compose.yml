@@ -5,7 +5,7 @@ services:
       - stack.env
     environment:
       ENV1:
-      ENV2:
+      ENV2: "${ENV2}"
       ENV3: "${ENV3}"
       ENV4: "OU=Users,OU=bimbo"
     entrypoint: ["/bin/sh", "-c"]
