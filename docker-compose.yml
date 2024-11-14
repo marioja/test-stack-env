@@ -1,6 +1,8 @@
 services:
   main-initialize:
     image: alpine:latest
+    env_file:
+      - stack.env
     environment:
       ENV1:
       ENV2:
