@@ -4,8 +4,8 @@ x-my-env: &my-env
 services:
   main-initialize:
     image: alpine:latest
-    env_file:
-      - stack.env
+#    env_file:
+#      - stack.env
     environment:
       <<: *my-env
     entrypoint: ["/bin/sh", "-c"]
