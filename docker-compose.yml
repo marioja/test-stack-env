@@ -1,6 +1,6 @@
 x-my-env: &my-env
-  env1:
-  env2:
+  ENV1:
+  ENV2:
 services:
   main-initialize:
     image: alpine:latest
@@ -8,5 +8,6 @@ services:
 #      - stack.env
     environment:
       <<: *my-env
+      ENV3:
     entrypoint: ["/bin/sh", "-c"]
-    command: ["echo env1=${env1};printenv"]
+    command: ["echo ENV1=${ENV1};printenv"]
