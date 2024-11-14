@@ -10,4 +10,4 @@ services:
       ENVPE2:
       ENVDC1: "OU=Users,OU=bimbo"
     entrypoint: ["/bin/sh", "-c"]
-    command: ['printenv; echo "ENVSE1=${ENVSE1}"; echo "ENVSE2=${ENVSE2}"; echo "ENVSE3=${ENVSE3}"; echo "ENVPE3=${ENVPE1}"; echo "ENVPE4=${ENVPE2}"; echo "ENVDC5=${ENVDC1}";']
+    command: ['printenv; echo "ENVSE1=${ENVSE1}"; echo "ENVSE2=${ENVSE2}"; echo "ENVSE3=${ENVSE3}"; echo "ENVPE1=${ENVPE1}"; echo "ENVPE2=${ENVPE2}"; echo "ENVDC1=${ENVDC1}";']
