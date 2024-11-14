@@ -6,5 +6,5 @@ services:
     environment:
       ENV1:
       ENV2:
-    entrypoint: ["/bin/sh", "-xvc"]
-    command: ['printenv;echo ENV1=${ENV1};echo ENV2=${ENV2};printenv']
+    entrypoint: ["/bin/sh", "-c"]
+    command: ['printenv']
