@@ -6,5 +6,6 @@ services:
     environment:
       ENV1:
       ENV2:
+      ENV3:
     entrypoint: ["/bin/sh", "-c"]
     command: ['printenv']
