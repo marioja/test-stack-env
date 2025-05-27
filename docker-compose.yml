@@ -7,6 +7,7 @@ services:
       env_stack_env1:
       env_stack_env2:
       env_comp1:: 
+      env_env1:
       env_env2: "${env_env2}"
       env_comp3:
       env_compdc1: "OU=Users,OU=compose"
