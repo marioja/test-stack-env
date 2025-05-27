@@ -4,11 +4,11 @@ services:
     env_file:
       - stack.env
     environment:
-      ENVSE1:
-      ENVSE2:
-      ENVPE1: 
-      ENVPE2: "${ENVPE2}"
-      ENVPE3:
-      ENVDC1: "OU=Users,OU=bimbo"
+      env_stack_env1:
+      env_stack_env2:
+      env_comp1:: 
+      env_env2: "${env_env2}"
+      env_comp3:
+      env_compdc1: "OU=Users,OU=compose"
     entrypoint: ["/bin/sh", "-xvc"]
-    command: ['printenv; echo "compose: ENVSE1=${ENVSE1} ENVSE2=${ENVSE2} ENVSE3=${ENVSE3} ENVPE1=${ENVPE1} ENVPE2=${ENVPE2} ENVPE3=${ENVPE3} ENVDC1=${ENVDC1}";']
+    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}";']
