@@ -2,7 +2,7 @@ services:
   main-initialize:
     image: alpine:latest
     env_file:
-      - ${EIAB_APP:+/image-build}${EIAB_ENV:+.}/env/${EIAB_ENV:-prod}.env
+      - ${EIAB_APP:+/image-build/eiab/tse}${EIAB_ENV:+.}/env/${EIAB_ENV:-prod}.env
     environment:
       env_stack_env1: "${env_stack_env1}"
       env_stack_env2:
