@@ -1,6 +1,5 @@
 # Purpose of this repository
-This repo is there to illustrate a few bugs with Portainer.  This was tested with Portainer Bussiness Edition 2.21.4 which was the current version at the time this was created.
 
-The setup for this is described in this issue https://github.com/portainer/portainer/issues/12376
+This branch is to illustrate the use the of the EIAB_APP and EIAB_ENV variables for selecting the environment files.
 
-Since then, I have made modifications and now I define ENV3 in the portainer stack page.
+See the wiki page at [EIAB environment variables](https://gitlab.mfj.local/mario/config/-/wikis/home/EIAB_ENV-variable)
