@@ -4,7 +4,7 @@ services:
     env_file:
       - stack.env
     environment:
-      env_stack_env1:
+      env_stack_env1: "${env_stack_env1}"
       env_stack_env2:
       env_comp1:: 
       env_env1:
