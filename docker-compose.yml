@@ -14,4 +14,5 @@ services:
     entrypoint: ["/bin/sh", "-xvc"]
     volumes:
       - ${EIAB_APP:-.}/vols/scripts:/scripts
-    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}";df -h;ls -l /scripts']
+      - ${EIAB_EXTRA:-.}/vols/extras:/extras
+    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}";ls -l /scripts /extras']
