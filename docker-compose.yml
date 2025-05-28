@@ -1,6 +1,6 @@
 secrets:
   very_secret:
-    file: ${EIAB_APP:-.}/secrets/very_secret.txt
+    file: ${EIAB_EXTRA:-.}/secrets/very_secret.txt
 services:
   main-initialize:
     image: alpine:latest
