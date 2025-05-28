@@ -20,11 +20,5 @@ services:
     volumes:
       - ${EIAB_APP:-.}/vols/scripts:/scripts
       - ${EIAB_EXTRA:-.}/vols/extras:/extras
-    command: |
-      printenv
-      echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}"
-      ls -l /scripts /extras
-      echo "very_secret: $(cat /run/secrets/very_secret)"
-      echo "EIAB_APP=${EIAB_APP:-.}"
-      echo "EIAB_ENV=${EIAB_ENV:-prod}"
-      echo "EIAB_EXTRA=${EIAB_EXTRA:-.}"
+    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}";ls -l /scripts /extras;
+      echo "very_secret: $(cat /run/secrets/very_secret)"; echo "EIAB_APP=${EIAB_APP}"; echo "compose: EIAB_ENV=${EIAB_ENV}"; echo "EIAB_EXTRA=${EIAB_EXTRA}"']
