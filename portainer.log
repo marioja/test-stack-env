@@ -1,0 +1,22 @@
+=== .env file tests ===
+dotenv_empty: compose: 'dotenv-empty-value' container env: 'dotenv-empty-value'
+dotenv_sub: compose: 'dotenv-sub-value' container env: 'dotenv-sub-value'
+dotenv_hard: compose: 'dotenv-hard-value' container env: 'hard'
+dotenv_undeclared: compose: 'dotenv-undeclared-value' container env: '' (exists in .env but not in environment section)
+=== stack.env file tests ===
+stackenv_empty: compose: '' container env: ''
+stackenv_sub: compose: '' container env: ''
+stackenv_hard: compose: '' container env: 'hard'
+stackenv_undeclared: compose: '' container env: '' (exists in stack.env but not in environment section)
+=== env/staging.env file tests ===
+stagingenv_empty: compose: '' container env: ''
+stagingenv_sub: compose: '' container env: ''
+stagingenv_hard: compose: '' container env: 'hard'
+stagingenv_undeclared: compose: '' container env: 'stagingenv-undeclared-value' (exists in staging.env but not in environment section)
+=== Portainer UI simulation tests ===
+portainer_empty: compose: 'portainer-empty-value' container env: 'portainer-empty-value'
+portainer_sub: compose: 'portainer-sub-value' container env: 'portainer-sub-value'
+portainer_hard: compose: 'portainer-hard-value' container env: 'hard'
+portainer_undeclared: compose: 'portainer-undeclared-value' container env: '' (exists in portainer-simulation.env but not in environment section)
+=== Missing variable test ===
+missing_test: compose: '' container env: '' (missing_var not defined in any source)
