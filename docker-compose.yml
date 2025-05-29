@@ -7,21 +7,74 @@ services:
     env_file:
       - ${EIAB_APP:+/image-build/eiab/tse}${EIAB_ENV:+.}/env/${EIAB_ENV:-prod}.env
     environment:
-      env_stack_env1: "${env_stack_env1}"
-      env_stack_env2:
-      env_staging_env1: "${env_staging_env1}"
-      env_staging_env2:
-      env_comp1: 
-      env_env1:
-      env_env2: "${env_env2}"
-      env_comp3:
-      env_root_stack2: "${env_root_stack2}"
-      env_compdc1: "OU=Users,OU=compose"
+      # ===== .env file variables (automatically loaded) =====
+      # Pattern 1: Empty value
+      dotenv_empty:
+      # Pattern 2: Substitution from .env
+      dotenv_sub: "${dotenv_sub}"
+      # Pattern 3: Hard-coded value
+      dotenv_hard: "hard"
+      # Pattern 4: Undeclared (dotenv_undeclared exists in .env but not declared here)
+      
+      # ===== stack.env file variables (explicitly loaded) =====
+      # Pattern 1: Empty value
+      stackenv_empty:
+      # Pattern 2: Substitution from stack.env
+      stackenv_sub: "${stackenv_sub}"
+      # Pattern 3: Hard-coded value
+      stackenv_hard: "hard"
+      # Pattern 4: Undeclared (stackenv_undeclared exists in stack.env but not declared here)
+      
+      # ===== env/staging.env file variables (conditionally loaded) =====
+      # Pattern 1: Empty value
+      stagingenv_empty:
+      # Pattern 2: Substitution from staging.env
+      stagingenv_sub: "${stagingenv_sub}"
+      # Pattern 3: Hard-coded value
+      stagingenv_hard: "hard"
+      # Pattern 4: Undeclared (stagingenv_undeclared exists in staging.env but not declared here)
+      
+      # ===== Portainer UI simulation variables =====
+      # Pattern 1: Empty value
+      portainer_empty:
+      # Pattern 2: Substitution from portainer-simulation.env
+      portainer_sub: "${portainer_sub}"
+      # Pattern 3: Hard-coded value
+      portainer_hard: "hard"
+      # Pattern 4: Undeclared (portainer_undeclared exists in portainer-simulation.env but not declared here)
+      
+      # ===== Missing variable test (missing from ALL sources) =====
+      # Pattern 5: Missing variable - not defined in any source
+      missing_test: "${missing_var}"
     entrypoint: ["/bin/sh", "-xvc"]
     secrets:
       - very_secret
     volumes:
       - ${EIAB_APP:-.}/vols/scripts:/scripts
       - ${EIAB_EXTRA:-.}/vols/extras:/extras
-    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1} env_stack_env2=${env_stack_env2} env_stack_env3=${env_stack_env3} env_comp1=${env_comp1} env_env2=${env_env2} env_comp3=${env_comp3} env_compdc1=${env_compdc1}";ls -l /scripts /extras;
-      echo "very_secret: $(cat /run/secrets/very_secret)"; echo "compose: EIAB_APP=${EIAB_APP} EIAB_ENV=${EIAB_ENV} EIAB_EXTRA=${EIAB_EXTRA}"']
+    command: ['printenv | sort; echo "=== ENVIRONMENT VARIABLE TESTING ==="; 
+      echo "=== .env file tests ===";
+      echo "dotenv_empty=[${dotenv_empty}]";
+      echo "dotenv_sub=[${dotenv_sub}]"; 
+      echo "dotenv_hard=[${dotenv_hard}]";
+      echo "dotenv_undeclared=[${dotenv_undeclared}] (exists in .env but not in environment section)";
+      echo "=== stack.env file tests ===";
+      echo "stackenv_empty=[${stackenv_empty}]";
+      echo "stackenv_sub=[${stackenv_sub}]";
+      echo "stackenv_hard=[${stackenv_hard}]";
+      echo "stackenv_undeclared=[${stackenv_undeclared}] (exists in stack.env but not in environment section)";
+      echo "=== env/staging.env file tests ===";
+      echo "stagingenv_empty=[${stagingenv_empty}]";
+      echo "stagingenv_sub=[${stagingenv_sub}]";
+      echo "stagingenv_hard=[${stagingenv_hard}]";
+      echo "stagingenv_undeclared=[${stagingenv_undeclared}] (exists in staging.env but not in environment section)";
+      echo "=== Portainer UI simulation tests ===";
+      echo "portainer_empty=[${portainer_empty}]";
+      echo "portainer_sub=[${portainer_sub}]";
+      echo "portainer_hard=[${portainer_hard}]";
+      echo "portainer_undeclared=[${portainer_undeclared}] (exists in portainer-simulation.env but not in environment section)";
+      echo "=== Missing variable test ===";
+      echo "missing_test=[${missing_test}] (missing_var not defined in any source)";
+      ls -l /scripts /extras;
+      echo "very_secret: $(cat /run/secrets/very_secret)"; 
+      echo "compose: EIAB_APP=${EIAB_APP} EIAB_ENV=${EIAB_ENV} EIAB_EXTRA=${EIAB_EXTRA}"']
