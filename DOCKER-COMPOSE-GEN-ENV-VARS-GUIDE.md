@@ -171,6 +171,8 @@ environment:
 
 ## Portainer Integration
 
+> **Note:** This guide assumes Portainer 2.30.1 or later. Earlier versions had bugs with environment variable handling, especially with relative path volumes and variable substitution.<sup>1</sup>
+
 ### Stack Variables in Portainer
 When deploying via Portainer, use the "Environment Variables" section for variables that need compose-time substitution:
 
@@ -472,3 +474,9 @@ docker compose exec service printenv
 ```
 
 When these don't match your expectations, trace through the two-phase process to identify where the disconnect occurs.
+
+---
+
+## Footnotes
+
+<sup>1</sup> **Portainer Version Requirement:** This guide was tested with Portainer 2.30.1. Earlier versions had several bugs affecting environment variable handling, particularly around relative path volumes and variable substitution in stack deployments. If you encounter unexpected behavior, ensure you're running Portainer 2.30.1 or later.
