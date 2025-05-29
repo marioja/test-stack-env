@@ -4,4 +4,4 @@ services:
     environment:
       env_env1:
     entrypoint: ["/bin/sh", "-c"]
-    command: ['printenv; echo "compose: env_stack_env1=${env_stack_env1}"']
+    command: ['printenv; echo "compose: env_env1=${env_env1}"']
