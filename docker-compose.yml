@@ -52,29 +52,32 @@ services:
     volumes:
       - ${EIAB_APP:-.}/vols/scripts:/scripts
       - ${EIAB_EXTRA:-.}/vols/extras:/extras
-    command: ['printenv | sort; echo "=== ENVIRONMENT VARIABLE TESTING ==="; 
-      echo "=== .env file tests ===";
-      echo "dotenv_empty=[${dotenv_empty}]";
-      echo "dotenv_sub=[${dotenv_sub}]"; 
-      echo "dotenv_hard=[${dotenv_hard}]";
-      echo "dotenv_undeclared=[${dotenv_undeclared}] (exists in .env but not in environment section)";
-      echo "=== stack.env file tests ===";
-      echo "stackenv_empty=[${stackenv_empty}]";
-      echo "stackenv_sub=[${stackenv_sub}]";
-      echo "stackenv_hard=[${stackenv_hard}]";
-      echo "stackenv_undeclared=[${stackenv_undeclared}] (exists in stack.env but not in environment section)";
-      echo "=== env/staging.env file tests ===";
-      echo "stagingenv_empty=[${stagingenv_empty}]";
-      echo "stagingenv_sub=[${stagingenv_sub}]";
-      echo "stagingenv_hard=[${stagingenv_hard}]";
-      echo "stagingenv_undeclared=[${stagingenv_undeclared}] (exists in staging.env but not in environment section)";
-      echo "=== Portainer UI simulation tests ===";
-      echo "portainer_empty=[${portainer_empty}]";
-      echo "portainer_sub=[${portainer_sub}]";
-      echo "portainer_hard=[${portainer_hard}]";
-      echo "portainer_undeclared=[${portainer_undeclared}] (exists in portainer-simulation.env but not in environment section)";
-      echo "=== Missing variable test ===";
-      echo "missing_test=[${missing_test}] (missing_var not defined in any source)";
-      ls -l /scripts /extras;
-      echo "very_secret: $(cat /run/secrets/very_secret)"; 
-      echo "compose: EIAB_APP=${EIAB_APP} EIAB_ENV=${EIAB_ENV} EIAB_EXTRA=${EIAB_EXTRA}"']
+    command: 
+      - |
+        printenv | sort
+        echo "=== ENVIRONMENT VARIABLE TESTING ==="
+        echo "=== .env file tests ==="
+        echo "dotenv_empty: compose: '${dotenv_empty}' container env: '$$dotenv_empty'"
+        echo "dotenv_sub: compose: '${dotenv_sub}' container env: '$$dotenv_sub'"
+        echo "dotenv_hard: compose: '${dotenv_hard}' container env: '$$dotenv_hard'"
+        echo "dotenv_undeclared: compose: '${dotenv_undeclared}' container env: '$$dotenv_undeclared' (exists in .env but not in environment section)"
+        echo "=== stack.env file tests ==="
+        echo "stackenv_empty: compose: '${stackenv_empty}' container env: '$$stackenv_empty'"
+        echo "stackenv_sub: compose: '${stackenv_sub}' container env: '$$stackenv_sub'"
+        echo "stackenv_hard: compose: '${stackenv_hard}' container env: '$$stackenv_hard'"
+        echo "stackenv_undeclared: compose: '${stackenv_undeclared}' container env: '$$stackenv_undeclared' (exists in stack.env but not in environment section)"
+        echo "=== env/staging.env file tests ==="
+        echo "stagingenv_empty: compose: '${stagingenv_empty}' container env: '$$stagingenv_empty'"
+        echo "stagingenv_sub: compose: '${stagingenv_sub}' container env: '$$stagingenv_sub'"
+        echo "stagingenv_hard: compose: '${stagingenv_hard}' container env: '$$stagingenv_hard'"
+        echo "stagingenv_undeclared: compose: '${stagingenv_undeclared}' container env: '$$stagingenv_undeclared' (exists in staging.env but not in environment section)"
+        echo "=== Portainer UI simulation tests ==="
+        echo "portainer_empty: compose: '${portainer_empty}' container env: '$$portainer_empty'"
+        echo "portainer_sub: compose: '${portainer_sub}' container env: '$$portainer_sub'"
+        echo "portainer_hard: compose: '${portainer_hard}' container env: '$$portainer_hard'"
+        echo "portainer_undeclared: compose: '${portainer_undeclared}' container env: '$$portainer_undeclared' (exists in portainer-simulation.env but not in environment section)"
+        echo "=== Missing variable test ==="
+        echo "missing_test: compose: '${missing_test}' container env: '$$missing_test' (missing_var not defined in any source)"
+        ls -l /scripts /extras
+        echo "very_secret: $(cat /run/secrets/very_secret)"
+        echo "compose: EIAB_APP=${EIAB_APP} EIAB_ENV=${EIAB_ENV} EIAB_EXTRA=${EIAB_EXTRA}"
