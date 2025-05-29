@@ -83,25 +83,25 @@ Our test includes these sources:
 
 ### Results Breakdown
 
-#### Pattern 1: Empty Values Override
+#### Pattern 1: Variable Lookup (No Value Specified)
 
 ```yaml
 # In docker-compose.yml environment section:
-dotenv_empty:  # Empty value = override source file
+dotenv_empty:  # No value = lookup from available sources
 ```
 
 | Source | Has Variable | Compose Result | Container Result | Explanation |
 |--------|--------------|----------------|------------------|-------------|
-| `.env` | `dotenv_empty=dotenv-empty-value` | `'dotenv-empty-value'` | `'dotenv-empty-value'` | ❌ **BUG**: Should be empty! |
-| `stack.env` | `stackenv_empty=stackenv-empty-value` | `''` | `''` | ✅ Correctly overridden |
+| `.env` | `dotenv_empty=dotenv-empty-value` | `'dotenv-empty-value'` | `'dotenv-empty-value'` | ✅ **Correct**: `.env` variable found and used |
+| `stack.env` | `stackenv_empty=stackenv-empty-value` | `''` | `''` | ✅ **Correct**: `env_file` variables not available for lookup |
 
-**Why the difference?** The `.env` file is loaded automatically and affects compose-time substitution, but `stack.env` requires explicit `env_file` directive.
+**Key Insight**: When you specify `variable_name:` with no value, Docker Compose looks for that variable in available sources. Only `.env` files and shell environment are available for this lookup - `env_file` variables are not.
 
-#### Pattern 2: Variable Substitution
+#### Pattern 2: Explicit Variable Substitution
 
 ```yaml
 # In docker-compose.yml environment section:
-dotenv_sub: "${dotenv_sub}"  # Substitute from source
+dotenv_sub: "${dotenv_sub}"  # Explicit substitution from source
 ```
 
 | Source | Has Variable | Compose Result | Container Result | Explanation |
