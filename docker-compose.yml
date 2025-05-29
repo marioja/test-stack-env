@@ -1,5 +1,5 @@
 services:
-  test:
+  myserv1:
     image: alpine:latest
     environment:
       env_env1:
