@@ -19,3 +19,17 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 PWD=/
 compose: env_env1=pickaboo
 ```
+When deploying the stack in portainer using the git repository deploy for this branch and using the "enable relative path volumes" feature and the "local filesystem path" this is the output that I get:
+
+```
+HOSTNAME=76002d55ddf9
+SHLVL=1
+HOME=/root
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/
+compose: env_env1=
+```
+
+There is no myserv1 environment variable and no environment in the compose environment as is the case in the docker compose up command line.
+
+By the way when I check the folder specified in the local filesystem path the .env file with the correct content can be found in the <local-filesystem-path>/portainer-compose-unpacker/stacks/<stackname>
