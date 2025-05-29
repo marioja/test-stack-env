@@ -48,10 +48,23 @@ graph TD
     C --> D[Container Runtime]
     
     E[.env file] --> A
-    F[env_file directive] --> A
+    E --> D
+    F[env_file directive] --> D
     G[Shell environment] --> A
-    H[environment section] --> C
+    G --> D
+    H[environment section] --> D
+    
+    style A fill:#e1f5fe
+    style D fill:#fff3e0
+    style E fill:#e8f5e8
+    style F fill:#fff9c4
+    style G fill:#f3e5f5
+    style H fill:#ffebee
 ```
+
+**Key Points:**
+- **Compose-time** (Phase 1): Only `.env` file and shell environment available for `${variable}` substitution
+- **Runtime** (Phase 2): All sources contribute to final container environment, with `environment` section having highest priority
 
 1. **Phase 1 - Compose Time**: Docker Compose reads all sources and substitutes `${variable}` placeholders
 2. **Phase 2 - Runtime**: Container starts with final environment variables
