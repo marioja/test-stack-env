@@ -1,7 +1,11 @@
 # Purpose of this repository
 
-This branch is to illustrate the use the of the EIAB_APP and EIAB_ENV variables for selecting the environment files.
+This branch is to the problem with support of .env file in portainer
 
-The .env is ignore by portainer even when selecting the relative path option.
+If I deploy a portainer stack from a git repository that contains a .env file, the environment variables will not be available in the environment when building the stack
 
-See the wiki page at [EIAB environment variables](https://gitlab.mfj.local/mario/config/-/wikis/home/EIAB_ENV-variable)
+If I checkout the branch and then type:
+
+`docker compose up`
+
+Then the output will contain
