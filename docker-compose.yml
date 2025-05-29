@@ -46,7 +46,7 @@ services:
       # ===== Missing variable test (missing from ALL sources) =====
       # Pattern 5: Missing variable - not defined in any source
       missing_test: "${missing_var}"
-    entrypoint: ["/bin/sh", "-xvc"]
+    entrypoint: ["/bin/sh", "-c"]
     secrets:
       - very_secret
     volumes:
